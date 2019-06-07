@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  volume-todo-api:
+    external: true
+  volume-todo-app:
+    external: true
+
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: go-Dockerfile
+    volumes:
+      - ./api:/go
+  app:
+    build:
+      context: .
+      dockerfile: nuxt-Dockerfile
+    working_dir: /app
+    volumes:
+      - ./app:/go

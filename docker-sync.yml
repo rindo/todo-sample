@@ -1,0 +1,7 @@
+version: '2'
+
+syncs:
+  volume-todo-api:
+    src: 'api'
+  volume-todo-app:
+    src: 'app'
