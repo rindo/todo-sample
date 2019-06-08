@@ -1,1 +1,12 @@
+### Docker ###
 .docker-sync
+tmp/
+
+### Go ###
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out

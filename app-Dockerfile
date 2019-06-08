@@ -1,0 +1,9 @@
+FROM node:latest
+
+ENV LANG C.UTF-8
+ENV TZ Asia/Tokyo
+ENV HOST 0.0.0.0
+
+RUN apt-get update     && \
+    npm install -g npm && \
+    npm install -g @vue/cli
