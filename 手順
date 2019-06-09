@@ -1,5 +1,0 @@
-make run-api
-
-go get -u github.com/gin-gonic/gin
-go get -u github.com/lib/pq
-go get -v github.com/rubenv/sql-migrate/...

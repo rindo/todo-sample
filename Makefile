@@ -8,11 +8,11 @@ run-app:
 	docker-compose run --rm app bash
 
 start:
-	docker-compose -f docker-compose.yml up
+	docker-compose -f docker-compose.yml up -d
 
 restart:
 	docker-compose down
-	docker-compose -f docker-compose.yml up
+	docker-compose -f docker-compose.yml up -d
 
 stop:
 	docker-compose down

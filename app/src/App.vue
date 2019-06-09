@@ -1,28 +1,45 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+  #app
+    b-table(striped :items="todos")
+
+    b-form(inline)
+      b-input#field(placeholder="What's yuo want to do?" v-model="input")
+      b-btn(variant="primary" @click="addTodo(input)" :disabled="!canAdd") Add
+      p {{canAdd}}
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data: function () {
+    return {
+      todos: [
+        {id: 1, name: 'todo1', done: true, created_at: 1, updated_at: 1}
+      ],
+      input: ""
+    }
+  },
+  computed: {
+    canAdd: function () {
+      return this.input != ""
+    }
+  },
+  methods: {
+    addTodo: function () {
+      // this.todos.push({
+      //   id: 1, name: 'todo1', done: true, created_at: 1, updated_at: 1
+      // })
+    }
   }
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 10pt;
+
+  #field {
+    width: 50%;
+  }
 }
 </style>

@@ -2,17 +2,23 @@ version: '3'
 
 services:
   api:
+    tty: true
+    stdin_open: true
     build: 
       context: .
       dockerfile: api-Dockerfile
     volumes:
       - ./api:/go
+    environment:
+      PORT: 8080
     ports:
       - 8080:8080
-    command: go run src/github.com/RINDO/server/main.go
+    command: go run src/api/server/main.go
     depends_on:
       - db
   app:
+    tty: true
+    stdin_open: true
     build:
       context: .
       dockerfile: app-Dockerfile
@@ -23,7 +29,7 @@ services:
       - 3000:3000
     depends_on:
       - api
-    command: npm run serve
+    # command: npm run serve
   db:
     image: postgres:latest
     restart: always
