@@ -17,7 +17,7 @@ export default {
   },
 
   updateTodo: (id, name, done) => {
-    return client.put(`/todos/${id}`)
+    return client.put(`/todos/${id}`, { name: name, done: done })
   },
 
   deleteToodo: (id) => {

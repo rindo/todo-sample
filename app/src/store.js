@@ -20,12 +20,22 @@ export default new Vuex.Store({
       })
     },
     addTodo (context, name) {
+      // TODO: add to state
       api.addTodo(name).then(res => {
         this.dispatch("getTodos")
       })
     },
-    deleteTodo () {
-      
+    updateTodo (context, id, name, done) {
+      api.updateTodo(id, name, done).then(res => {
+        // TODO: update from state
+        this.dispatch("getTodos")
+      })
+    },
+    deleteTodo (context, id) {
+      api.deleteTodo(id).then(res => {
+        // TODO: delete from state
+        this.dispatch("getTodos")
+      })
     }
   }
 })
