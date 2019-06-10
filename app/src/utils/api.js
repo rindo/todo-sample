@@ -23,5 +23,4 @@ export default {
   deleteToodo: (id) => {
     return client.delete(`/todos/${id}`)
   }
-
 }
