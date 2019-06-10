@@ -9,6 +9,7 @@ services:
       dockerfile: api-Dockerfile
     volumes:
       - ./api:/go
+    working_dir: /go/src/api/server/
     environment:
       PORT: 8080
     ports:
