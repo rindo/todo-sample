@@ -29,7 +29,7 @@ services:
       - 3000:3000
     depends_on:
       - api
-    # command: npm run serve
+    command: npm run serve
   db:
     image: postgres:latest
     restart: always

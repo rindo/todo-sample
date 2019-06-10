@@ -7,8 +7,8 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.GET("/todos/", getTodos)
-	r.POST("/todos/", createTodo)
+	r.GET("/todos", getTodos)
+	r.POST("/todos", createTodo)
 	r.PUT("/todos/:id", updateTodo)
 	r.DELETE("/todos/:id", deleteTodo)
 	r.Run()

@@ -5,30 +5,30 @@
     b-form(inline)
       b-input#field(placeholder="What's yuo want to do?" v-model="input")
       b-btn(variant="primary" @click="addTodo(input)" :disabled="!canAdd") Add
-      p {{canAdd}}
 </template>
 
 <script>
 export default {
   name: 'app',
-  data: function () {
+  data () {
     return {
-      todos: [
-        {id: 1, name: 'todo1', done: true, created_at: 1, updated_at: 1}
-      ],
       input: ""
     }
   },
+  created () {
+    this.$store.dispatch('getTodos')
+  },
   computed: {
-    canAdd: function () {
+    todos() {
+      return this.$store.state.todos
+    },
+    canAdd() {
       return this.input != ""
     }
   },
   methods: {
     addTodo: function () {
-      // this.todos.push({
-      //   id: 1, name: 'todo1', done: true, created_at: 1, updated_at: 1
-      // })
+      this.$store.dispatch('addTodo', this.input)
     }
   }
 }
