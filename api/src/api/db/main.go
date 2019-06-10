@@ -1,7 +1,7 @@
 package db
 
 import (
-	"fmt"
+    "fmt"
     "errors"
 	"time"
 	"database/sql"
@@ -9,9 +9,9 @@ import (
 )
 
 type Todo struct {
-	Id 	      string `json:id`
+	Id        string `json:id`
 	Name      string `json:name`
-	Done 	  bool `json:done`
+	Done      bool `json:done`
 	CreatedAt time.Time `created_at`
 	UpdatedAt time.Time `updated_at`
 }

@@ -16,11 +16,13 @@ export default new Vuex.Store({
   actions: {
     getTodos (context) {
       api.todos().then(res => {
+        console.log(res.date)
         commit('setTodos', res.data)
       })
     },
     addTodo (context, name) {
       api.addTodo(name).then(res => {
+        console.log(res.date)
         getTodos()
       })
     },
