@@ -1,16 +1,15 @@
 'use strict';
 
 import axios from 'axios'
-
-axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const client = axios.create({
-  baseURL: 'api:8080'
+  baseURL: 'http://localhost:8080'
 })
 
 export default {
   addTodo: (name) => {
-    return client.post('/todos', { name })
+    return client.post('/todos', { name: name })
   },
 
   todos: () => {
