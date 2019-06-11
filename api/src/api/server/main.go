@@ -42,8 +42,6 @@ func createTodo(c *gin.Context) {
 	var p createParams
 	c.BindJSON(&p)
 
-	fmt.Printf("%s", p)
-
 	if p.Name == "" {
 		c.Status(400)
 		return	
