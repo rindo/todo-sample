@@ -20,7 +20,7 @@ export default {
     return client.put(`/todos/${id}`, { name: name, done: done })
   },
 
-  deleteToodo: (id) => {
+  deleteTodo: (id) => {
     return client.delete(`/todos/${id}`)
   }
 }

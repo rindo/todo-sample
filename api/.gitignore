@@ -1,1 +1,2 @@
-pkg/mod/*
+pkg/dep/*
+src/todo/vendor

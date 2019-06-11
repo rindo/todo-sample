@@ -2,10 +2,10 @@ build:
 	docker-compose build
 
 run-api:
-	docker-compose run --rm api
+	docker-compose exec api bash
 
 run-app:
-	docker-compose run --rm app bash
+	docker-compose exec app bash
 
 start:
 	docker-compose -f docker-compose.yml up -d

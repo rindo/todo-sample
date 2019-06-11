@@ -1,0 +1,9 @@
+[psql]
+  dbname = "todo"
+  host   = "db"
+  schema = "public"
+  port   = 5432
+  user   = "todo"
+  pass   = "password"
+  sslmode = "disable"
+  whitelist = ["todos"]

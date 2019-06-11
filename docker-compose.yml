@@ -9,12 +9,11 @@ services:
       dockerfile: api-Dockerfile
     volumes:
       - ./api:/go
-    working_dir: /go/src/api/server/
     environment:
       PORT: 8080
     ports:
       - 8080:8080
-    command: go run main.go
+    # command: fresh
     depends_on:
       - db
   app:
