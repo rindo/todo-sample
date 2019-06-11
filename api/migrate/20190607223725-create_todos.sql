@@ -5,7 +5,8 @@ CREATE TABLE todos (
   name       varchar(255) NOT NULL,
   done       boolean DEFAULT FALSE,
   created_at timestamp NOT NULL DEFAULT NOW(),
-  updated_at timestamp NOT NULL DEFAULT NOW()
+  updated_at timestamp NOT NULL DEFAULT NOW(),
+  PRIMARY KEY(id)
 );
 
 -- +migrate Down

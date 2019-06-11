@@ -14,7 +14,7 @@ services:
       PORT: 8080
     ports:
       - 8080:8080
-    command: go run src/api/server/main.go
+    command: go run main.go
     depends_on:
       - db
   app:
