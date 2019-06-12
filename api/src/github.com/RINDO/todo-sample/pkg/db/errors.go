@@ -2,6 +2,6 @@ package db
 
 import "errors"
 
-const (
+var (
 	ErrorNotFound = errors.New("RecordNotFound")
 )

@@ -1,6 +1,10 @@
 <template lang="pug">
   #app
     b-table(:items="todos" :fields="fields" striped)
+      //- template(slot="name" slot-scope="row")
+      //-   p(v-if="" @cliick="")
+      //-   b-form-input(v-model="text" placeholder="Enter your name")
+
       template(slot="delete" slot-scope="row")
         b-button(size="sm" @click="deleteTodo(row.item)") Delete
 
@@ -15,7 +19,8 @@ export default {
   data () {
     return {
       fields: ['id', 'name', 'created_at', 'updated_at', 'delete'],
-      input: ""
+      input: "",
+      editing: ""
     }
   },
   created () {

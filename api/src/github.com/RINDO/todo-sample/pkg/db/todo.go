@@ -1,8 +1,7 @@
 package db
 
 import (
-	"errors"
-	. "todo/models"
+	. "github.com/RINDO/todo-sample//models"
 	"github.com/volatiletech/sqlboiler/boil"
 )
 

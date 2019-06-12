@@ -1,28 +1,34 @@
-package todo_service
+package main
 
 import (
 	"strconv"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"todo/db"
+
+	"github.com/RINDO/todo-sample/pkg/db"
 )
 
-type createParams struct {
-	Name string `json:"name"`
-}
+func main() {
+	defer db.GetInstance().Close()
 
-type updateParams struct {
-	Id int `json:"id"`
-	Name string `json:"name"`
-	Done bool `json:"done"`
-}
+	r := gin.Default()
+	r.Use(gin.Logger())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"http://localhost:3000"},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders: []string{"*"},
+	}))
 
-func Routes(route *gin.Engine) {
-	todo := route.Group("/todo") {
+	todo := route.Group("/todo")
+	{
 		todo.GET("/", getTodos)
 		todo.POST("/", createTodo)
 		todo.PUT("/:id", updateTodo)
 		todo.DELETE("/:id", deleteTodo)
 	}
+
+	r.Run()
 }
 
 func getTodos(c *gin.Context) {
@@ -36,9 +42,10 @@ func getTodos(c *gin.Context) {
 }
 
 func createTodo(c *gin.Context) {
-	var p createParams
-	err := c.BindJSON(&p)
-	if err != nil {
+	var p struct {
+		Name string `json:"name"`
+	}
+	if c.BindJSON(&p) != nil {
 		c.Status(400)
 		return	
 	}
@@ -53,9 +60,12 @@ func createTodo(c *gin.Context) {
 }
 
 func updateTodo(c *gin.Context) {
-	var p updateParams
-	err := c.BindJSON(&p)
-	if err != nil {
+	var p struct {
+		Id int `json:"id"`
+		Name string `json:"name"`
+		Done bool `json:"done"`
+	}
+	if c.BindJSON(&p) != nil {
 		c.Status(400)
 	}
 
