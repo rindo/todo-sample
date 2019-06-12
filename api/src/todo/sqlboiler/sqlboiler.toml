@@ -1,3 +1,4 @@
+output="/go/src/todo/models"
 [psql]
   dbname = "todo"
   host   = "db"

@@ -1,9 +1,8 @@
-package main
+package todo_service
 
 import (
 	"strconv"
 	"github.com/gin-gonic/gin"
-	"github.com/gin-contrib/cors"
 	"todo/db"
 )
 
@@ -17,22 +16,13 @@ type updateParams struct {
 	Done bool `json:"done"`
 }
 
-func main() {
-	defer db.GetInstance().Close()
-
-	r := gin.Default()
-
-	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"http://localhost:3000"},
-		AllowMethods: []string{"GET", "POST", "DELETE", "OPTIONS"},
-		AllowHeaders: []string{"*"},
-	}))
-
-	r.GET("/todos", getTodos)
-	r.POST("/todos", createTodo)
-	r.PUT("/todos/:id", updateTodo)
-	r.DELETE("/todos/:id", deleteTodo)
-	r.Run()
+func Routes(route *gin.Engine) {
+	todo := route.Group("/todo") {
+		todo.GET("/", getTodos)
+		todo.POST("/", createTodo)
+		todo.PUT("/:id", updateTodo)
+		todo.DELETE("/:id", deleteTodo)
+	}
 }
 
 func getTodos(c *gin.Context) {

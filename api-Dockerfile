@@ -5,10 +5,11 @@ ENV TZ Asia/Tokyo
 ENV GO111MODULE=off
 ENV XDG_CONFIG_HOME /go/src/todo/
 
-WORKDIR /go/src/todo/cmd/api/
+WORKDIR /go/src/todo/services
 
 RUN go get -u github.com/golang/dep/cmd/dep && \
     go get github.com/pilu/fresh && \
     go get github.com/volatiletech/sqlboiler && \
     go get github.com/volatiletech/sqlboiler/drivers/sqlboiler-psql
 
+CMD ["fresh"]

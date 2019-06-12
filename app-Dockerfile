@@ -7,3 +7,5 @@ ENV HOST 0.0.0.0
 RUN apt-get update     && \
     npm install -g npm && \
     npm install -g @vue/cli
+
+CMD ["npm", "run", "serve"]

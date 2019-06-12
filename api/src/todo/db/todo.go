@@ -29,9 +29,8 @@ func CreateTodo(name string) error {
 
 func UpdateTodo(id int, name string, done bool) error {
 	todo, err := FindTodo(GetContext(), GetInstance(), id)
-
 	if todo == nil {
-		return errors.New("not found")
+		return ErrorNotFound
 	}
 	if err != nil {
 		return err
@@ -49,9 +48,8 @@ func UpdateTodo(id int, name string, done bool) error {
 
 func DeleteTodo(id int) error {
 	todo, err := FindTodo(GetContext(), GetInstance(), id)
-
 	if todo == nil {
-		return errors.New("not found")
+		return ErrorNotFound
 	}
 	if err != nil {
 		return err
