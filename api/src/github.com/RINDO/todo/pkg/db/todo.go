@@ -1,7 +1,7 @@
 package db
 
 import (
-	. "github.com/RINDO/todo-sample//models"
+	. "github.com/RINDO/todo/pkg/models"
 	"github.com/volatiletech/sqlboiler/boil"
 )
 
@@ -9,6 +9,10 @@ func GetTodos() (TodoSlice, error) {
 	todos, err := Todos().All(GetContext(), GetInstance())
 	if err != nil {
 		return todos, err
+	}
+
+	if todos == nil {
+		todos = TodoSlice{}
 	}
 	
 	return todos, nil

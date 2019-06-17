@@ -1,12 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/RINDO/todo-sample/pkg/db"
+	"github.com/RINDO/todo/pkg/db"
 )
 
 func main() {
@@ -20,12 +21,12 @@ func main() {
 		AllowHeaders: []string{"*"},
 	}))
 
-	todo := route.Group("/todo")
+	todo := r.Group("/todos")
 	{
-		todo.GET("/", getTodos)
-		todo.POST("/", createTodo)
-		todo.PUT("/:id", updateTodo)
-		todo.DELETE("/:id", deleteTodo)
+		todo.GET("", getTodos)
+		todo.POST("", createTodo)
+		todo.PUT(":id", updateTodo)
+		todo.DELETE(":id", deleteTodo)
 	}
 
 	r.Run()
@@ -35,6 +36,7 @@ func getTodos(c *gin.Context) {
 	todos, err := db.GetTodos()
 	if err != nil {
 		c.Status(500)
+		fmt.Printf("%s", err)
 		return
 	}
 
@@ -50,7 +52,7 @@ func createTodo(c *gin.Context) {
 		return	
 	}
 
-	err = db.CreateTodo(p.Name)
+	err := db.CreateTodo(p.Name)
 	if err != nil {
 		c.Status(500)
 		return
@@ -69,7 +71,7 @@ func updateTodo(c *gin.Context) {
 		c.Status(400)
 	}
 
-	err = db.UpdateTodo(p.Id, p.Name, p.Done)
+	err := db.UpdateTodo(p.Id, p.Name, p.Done)
 	if err != nil {
 		c.Status(500)
 		return

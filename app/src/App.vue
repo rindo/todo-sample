@@ -1,16 +1,12 @@
 <template lang="pug">
   #app
     b-table(:items="todos" :fields="fields" striped)
-      //- template(slot="name" slot-scope="row")
-      //-   p(v-if="" @cliick="")
-      //-   b-form-input(v-model="text" placeholder="Enter your name")
-
       template(slot="delete" slot-scope="row")
-        b-button(size="sm" @click="deleteTodo(row.item)") Delete
+        b-button(size="sm" variant="danger" @click="deleteTodo(row.item)") Delete
 
     b-form(inline)
       b-input#field(placeholder="What's yuo want to do?" v-model="input")
-      b-btn(variant="primary" @click="addTodo(input)" :disabled="!canAdd") Add
+      b-btn(variant="primary" @click="addTodo()" :disabled="!canAdd") Add
 </template>
 
 <script>
@@ -20,7 +16,6 @@ export default {
     return {
       fields: ['id', 'name', 'created_at', 'updated_at', 'delete'],
       input: "",
-      editing: ""
     }
   },
   created () {
@@ -35,11 +30,13 @@ export default {
     }
   },
   methods: {
-    addTodo: function (name) {
-      this.$store.dispatch('addTodo', name)
+    addTodo: function () {
+      this.$store.dispatch('addTodo', this.input)
+      this.input = ""
     },
     deleteTodo: function (item) {
-      this.$store.dispatch('deleteTodo', item.Id)
+      console.log(item)
+      this.$store.dispatch('deleteTodo', item.id)
     }
   }
 }

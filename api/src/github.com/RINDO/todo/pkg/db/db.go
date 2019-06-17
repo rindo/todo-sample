@@ -10,12 +10,13 @@ var instance *sql.DB
 
 func GetInstance() *sql.DB {
 	if instance == nil {
-		instance, err := sql.Open("postgres", "host=db port=5432 user=todo password=password dbname=todo sslmode=disable")
+		conn, err := sql.Open("postgres", "host=db port=5432 user=todo password=password dbname=todo sslmode=disable")
 		if err != nil {
 			panic(err)
 		}
-		instance.SetMaxIdleConns(5)
-		instance.SetMaxOpenConns(5)
+		conn.SetMaxIdleConns(5)
+		conn.SetMaxOpenConns(5)
+		instance = conn
 	}
 
 	return instance

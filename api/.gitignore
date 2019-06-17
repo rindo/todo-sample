@@ -1,2 +1,2 @@
 pkg/dep/*
-src/todo/vendor
+src/github.com/RINDO/todo/vendor

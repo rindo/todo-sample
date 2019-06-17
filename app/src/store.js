@@ -11,30 +11,35 @@ export default new Vuex.Store({
   mutations: {
     setTodos (state, todos) {
       state.todos = todos
+    },
+    updateTodo(state, id, name, done) {
+      var todo = state.todos.filter(it => it.id == id)
+      todo.name = name
+      todo.done = done
+    },
+    removeTodo (state, id) {
+      state.todos = state.todos.filter(it => it.id != id)
     }
   },
   actions: {
     getTodos (context) {
       api.todos().then(res => {
-        this.commit('setTodos', res.data.todos)
+        this.commit('setTodos', res.data)
       })
     },
     addTodo (context, name) {
-      // TODO: add to state
       api.addTodo(name).then(res => {
         this.dispatch("getTodos")
       })
     },
     updateTodo (context, id, name, done) {
       api.updateTodo(id, name, done).then(res => {
-        // TODO: update from state
-        this.dispatch("getTodos")
+        this.commit('updateTodo', id, name, done)
       })
     },
     deleteTodo (context, id) {
       api.deleteTodo(id).then(res => {
-        // TODO: delete from state
-        this.dispatch("getTodos")
+        this.commit('removeTodo', id)
       })
     }
   }

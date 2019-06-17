@@ -1,4 +1,4 @@
-output="/go/src/todo/models"
+output="/go/src/github.com/RINDO/todo/pkg/models"
 [psql]
   dbname = "todo"
   host   = "db"
