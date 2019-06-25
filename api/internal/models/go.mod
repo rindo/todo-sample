@@ -1,4 +1,4 @@
-module models
+module model
 
 go 1.12
 

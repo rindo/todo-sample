@@ -1,7 +1,7 @@
 package db
 
 import (
-	. "models"
+	. "api/internal/models"
 	"github.com/volatiletech/sqlboiler/boil"
 )
 
