@@ -1,5 +1,0 @@
-development:
-    dialect: postgres
-    datasource: dbname=todo host=db user=todo password=password port=5432 sslmode=disable
-    dir: migrate
-    table: migrations

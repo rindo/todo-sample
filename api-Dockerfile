@@ -2,11 +2,11 @@ FROM golang:latest
 
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
-ENV GO111MODULE=off
-ENV XDG_CONFIG_HOME /go/src/github.com/RINDO/todo/pkg
+ENV GO111MODULE=on
+ENV GOPATH=''
+ENV XDG_CONFIG_HOME /go/internal/pkg
 
-WORKDIR /go/src/github.com/RINDO/todo
+WORKDIR /go/
 
-RUN go get -u github.com/golang/dep/cmd/dep && \
-    go get -u github.com/volatiletech/sqlboiler && \
+RUN go get -u github.com/volatiletech/sqlboiler && \
     go get -u github.com/volatiletech/sqlboiler/drivers/sqlboiler-psql
